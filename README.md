@@ -1,73 +1,123 @@
-# Project_Experiment_1
+# Project Experiment 1
 
 ## 概要
 
-食材とカテゴリに基づいてレシピを提案する Flask アプリケーション
+食材名を入力すると、機械学習モデルが料理カテゴリを予測し、対応するレシピを提案するWebアプリケーション。
 
-### 前提条件
+大学のプロジェクト実験においてチームで開発を行った。機械学習による料理カテゴリ推薦機能に加え、レシピ検索、ユーザー投稿、ログイン機能などを実装している。
 
-- Python 3.7以上がインストールされていること
+## システム構成
 
-## セットアップ手順
+<img width="1171" height="442" alt="pro1" src="https://github.com/user-attachments/assets/425f7f9e-9dff-4ff1-8b31-a59da37621e3" />
 
-# 1. リポジトリのクローン (初回のみ)
+## 使用技術
 
+| 分野               | 技術                               |
+| ---------------- | -------------------------------- |
+| Backend          | Flask, SQLite                    |
+| Frontend         | HTML, CSS, JavaScript            |
+| Machine Learning | scikit-learn, MeCab, TF-IDF, MLP |
+| Development      | Git, GitHub, Git LFS             |
+
+## 主な機能
+
+* 食材からのレシピ検索
+* カテゴリ別レシピ検索
+* レシピ一覧・詳細表示
+* 機械学習による料理カテゴリ推薦
+* ユーザー投稿機能
+* ログイン機能
+
+## 機械学習モデル
+
+楽天レシピから収集した約24,000件のレシピデータを用いて、以下の6カテゴリ分類モデルを構築した。
+
+* 日本料理
+* 中国料理
+* 韓国料理
+* イタリア料理
+* フランス料理
+* エスニック料理
+
+前処理にはMeCabによる形態素解析およびTF-IDFを利用し、分類モデルにはMLP（Multi Layer Perceptron）を採用した。
+
+## 特徴
+
+* 約24,000件のレシピデータを用いた料理カテゴリ分類
+* FlaskによるWebアプリケーション実装
+* 機械学習モデルとWebアプリケーションの統合
+* GitHubを利用したチーム開発
+* Git LFSによる大容量ファイル管理
+
+## セットアップ
+
+### 1. リポジトリをクローン
+
+```bash
 git clone https://github.com/hiroats/Project_Experiment_1.git
-
-# 2. プロジェクトのディレクトリに移動
-
 cd Project_Experiment_1
+```
 
-# 3. ブランチ変更
-git fetch origin <branch名>  #ブランチを最新情報に更新
+### 2. ブランチを取得
 
-git checkout <branch名> #ブランチ変更
+```bash
+git fetch origin <branch名>
+git checkout <branch名>
+git pull origin <branch名>
+```
 
-git pull origin <branch名>　#ブランチの最新情報をローカル環境に反映
+### 3. Git LFSをインストール
 
+Windows: Git LFS Installer を利用
 
-# 4. Git LFSのインストール(初回のみ)
-Windowsの場合 : Git LFSのインストーラーからダウンロードし、インストール
+Linux:
 
-Linuxの場合 : sudo apt install git-lfs
+```bash
+sudo apt install git-lfs
+git lfs install
+git lfs pull
+```
 
-# - Git LFSの初期化 (初回のみ)
-git lfs install  #プロジェクトのディレクトリで行う
+### 4. 仮想環境の作成（任意）
 
-git lfs pull　#LFSファイルを明示的にダウンロード(省略可能な場合在り)
+```bash
+python -m venv venv
+```
 
-# 5. 仮想環境の作成とアクティベート　(省略可)
+Windows
 
-# - Windowsの場合
+```bash
+venv\Scripts\activate
+```
 
-python -m venv (任意環境名)
+Linux / macOS
 
-(任意環境名)\Scripts\activate
+```bash
+source venv/bin/activate
+```
 
-# - macOS / Linuxの場合
+### 5. パッケージをインストール
 
-python -m venv (任意環境名)
-
-source (任意環境名)/bin/activate
-
-# 6. 必要なパッケージのインストール
-
+```bash
 pip install -r requirements.txt
+```
 
-# 7. `run.py` をエントリーポイントに指定　(今後変えるかも)
+### 6. Flaskアプリを設定
 
-# - Linux / Macの人
+Linux / macOS
 
+```bash
 export FLASK_APP=run.py
+```
 
-# - Windowsの人
+Windows
 
-set FLASK_APP="run.py"
+```bash
+set FLASK_APP=run.py
+```
 
-# 8. アプリケーション起動
+### 7. アプリを起動
 
+```bash
 flask run
-
-# 9. 仮想環境の終了（オプション）
-
-deactivate
+```
